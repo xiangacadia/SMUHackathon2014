@@ -3,8 +3,7 @@ yeardata <- c()
 yearNum <- 20
 years <- c(1:yearNum)
 for(year in years){
-    year<-1
-    temp <- rep(0, ncol(result))
+    temp <- rep(0, nrow(result))
     for(i in c(1:12)){temp <- temp + result[,i+2+(year-1)*12]}
     yeardata <- cbind(yeardata, temp)
 }
