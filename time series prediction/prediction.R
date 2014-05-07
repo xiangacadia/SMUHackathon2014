@@ -4,13 +4,16 @@ data <- read.csv("C:\\Users\\ML3Lab\\Dropbox\\SMU Hackathon 2014\\data\\Average 
 startCol <- 3
 endCol <- ncol(data)
 
-yearsAhead <- 2018 - 2013
+yearAvaliable <- 2013
+to2018 <- 2018 - yearAvaliable
+to2014 <- 2014-yearAvaliable
 
-predictions <- c()
+year2018 <- c()
+year2014 <- c()
 
 for(rowNum in c(1:nrow(data))){
 
-value <- as.integer(data[rowNum,startCol:endCol])
+value <- as.double(data[rowNum,startCol:endCol])
 ## create time series objects
 ## frequencty: the number of observations per unit of time
 series <- ts(value,frequency=1)
@@ -24,9 +27,10 @@ fcast <- forecast(fit)
 
 fcast$mean[fcast$mean<0] <- 0
 
-predictions <- append(predictions, fcast$mean[yearsAhead])
+year2014 <- append(year2014, fcast$mean[to2014])
+year2018 <- append(year2018, fcast$mean[to2018])
 }
 
-data <- cbind(data[,c(1,2,ncol(data))], predictions)
+data <- cbind(data[,c(1,2,ncol(data))], year2014,year2018)
 
 write.csv(data,"C:\\Users\\ML3Lab\\Dropbox\\SMU Hackathon 2014\\predictions\\Average income.csv")
