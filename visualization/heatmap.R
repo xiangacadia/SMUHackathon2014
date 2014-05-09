@@ -3,14 +3,14 @@ d<-read.csv("/Users/xiangjiang/Dropbox/SMU Hackathon 2014/predictions/rank_matri
 d<-t(d)
 reverseD <- c()
 for(i in c(0:ncol(d))){
-    reverseD <- cbind(reverseD, d[ncol(d)-i,])  
+    reverseD <- cbind(reverseD, d[,ncol(d)-i])  
 }
 d<-reverseD
 d<-as.matrix(d)
 
 
 #par(xpd=NA,oma=c(0,0,0,15)) 
-col <- c("BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL")
+col <- c("BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PEI", "NL")
 row <- c("Agriculture forestry fishing and hunting"
          ,"Mining quarrying and oil and gas extraction"
          ,"Utilities"
@@ -31,7 +31,7 @@ row <- c("Agriculture forestry fishing and hunting"
          ,"Other services (except public administration)"
          ,"Public administration")
 
-jBuPuFun <- colorRampPalette(c('black','white'))#(brewer.pal(n = 10, "Blue"))
+jBuPuFun <- colorRampPalette(c('white','black'))#(brewer.pal(n = 10, "Blue"))
 paletteSize <- 256
 jBuPuPalette <- jBuPuFun(paletteSize)
 heatmap(d, Rowv = NA, Colv = NA, scale = "none", col = jBuPuPalette, labRow = row, labCol = col)
