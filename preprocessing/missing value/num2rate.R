@@ -1,7 +1,8 @@
-year <- c(1:17)
+year <- c(1:3)
 province <- c(1:10)
-industryNum <- 13
+industryNum <- 19
 industry <- c(1:industryNum)
+startColumn <- 3
 
 
 ratio <- yeardata
@@ -15,4 +16,4 @@ for(y in year){
 
 sum(ratio[industry, startColumn])
 
-write.csv(ratio, "/Users/xiangjiang/Documents/temp/Graduates/1.[ratio]Graduates-1993-2012.csv", row.names = FALSE)
+write.csv(ratio, "/Users/xiangjiang/Documents/temp/data/Average_income_ratio.csv", row.names = FALSE)
